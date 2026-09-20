@@ -20,12 +20,10 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      # این بخش هوشمند، فایل‌های اجرایی گریدل گم‌شده را خودکار دانلود و بازسازی می‌کند
       - name: Restore Missing Gradle Wrapper
         run: |
           gradle wrapper --gradle-version 8.10.2 --distribution-type all
 
-       Tar Setup Gradle Environment
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
 
