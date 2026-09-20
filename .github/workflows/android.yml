@@ -20,10 +20,11 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
+      # تنظیم دقیق نسخه گریدل روی 9.3.1 برای حل قطعی ارور خط 26
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
-          gradle-version: 8.10.2
+          gradle-version: 9.3.1
 
       - name: Build with Gradle
         run: gradle assembleDebug --no-daemon
@@ -32,4 +33,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: SwitchVPN-Final-APK
-          path: app/build/outputs/apk/debug/app-debug.apk
+          path: "**/build/outputs/apk/debug/*.apk"
