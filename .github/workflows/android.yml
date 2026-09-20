@@ -20,12 +20,30 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
+      # این بخش هوشمند فایل گم‌شده کاتالوگ افزونه‌ها را خودکار می‌سازد تا ارور libs برطرف شود
+      - name: Create Missing Version Catalog
+        run: |
+          mkdir -p app/gradle
+          mkdir -p gradle
+          cat << 'EOF' > gradle/libs.versions.toml
+          [versions]
+          agp = "8.8.0"
+          kotlin = "2.0.0"
+          compose = "1.6.8"
+
+          [plugins]
+          android-application = { id = "com.android.application", version.ref = "agp" }
+          kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+          kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+          EOF
+          cp gradle/libs.versions.toml app/gradle/libs.versions.toml
+
+       Eagle Setup Gradle
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: 8.10.2
 
-      # تغییر مسیر اجرای دستور به پوشه اصلی اپلیکیشن شما
       - name: Build with Gradle
         run: gradle assembleDebug --no-daemon
         working-directory: app
