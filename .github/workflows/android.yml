@@ -14,13 +14,13 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Set up Java 17
+      # ارتقا به نسخه ۲۱ جاوا برای هماهنگی کامل با گریدل ۹
+      - name: Set up Java 21
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
-          java-version: '17'
+          java-version: '21'
 
-      # تنظیم دقیق نسخه گریدل روی 9.3.1 برای حل قطعی ارور خط 26
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
