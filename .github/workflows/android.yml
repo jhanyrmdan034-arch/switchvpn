@@ -20,7 +20,6 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
 
-      # این بخش هوشمند فایل گم‌شده کاتالوگ افزونه‌ها را خودکار می‌سازد تا ارور libs برطرف شود
       - name: Create Missing Version Catalog
         run: |
           mkdir -p app/gradle
@@ -38,7 +37,6 @@ jobs:
           EOF
           cp gradle/libs.versions.toml app/gradle/libs.versions.toml
 
-       Eagle Setup Gradle
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v4
         with:
