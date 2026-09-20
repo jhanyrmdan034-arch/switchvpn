@@ -27,7 +27,7 @@ jobs:
           gradle-version: 9.3.1
 
       - name: Build with Gradle
-        run: gradle assembleDebug --no-daemon
+        run: gradle assembleDebug -Pandroid.packageSigning.debug=false --no-daemon
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
